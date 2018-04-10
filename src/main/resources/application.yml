@@ -3,11 +3,13 @@ simpleJob:
   cron: 0/5 * * * * ?
   shardingTotalCount: 1
   shardingItemParameters: 0=Beijing,1=Shanghai,2=Guangzhou
+  description: 简单类型测试任务
   
 dataflowJob:
   cron: 0/50 * * * * ?
   shardingTotalCount: 1
   shardingItemParameters: 0=Beijing,1=Shanghai,2=Guangzhou
+  description: 数据流程类型测试任务
 
 spring:
   profiles:

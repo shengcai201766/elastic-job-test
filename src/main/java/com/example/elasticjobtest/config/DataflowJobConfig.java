@@ -38,7 +38,7 @@ public class DataflowJobConfig extends AbstractDataflowJobConfig {
                                              @Value("${dataflowJob.cron}") final String cron,
                                              @Value("${dataflowJob.shardingTotalCount}") final int shardingTotalCount,
                                              @Value("${dataflowJob.shardingItemParameters}") final String shardingItemParameters,
-                                             @Value("${simpleJob.description}") final String description)
+                                             @Value("${dataflowJob.description}") final String description)
     {
         return builderJobScheduler(dataflowJob, cron, shardingTotalCount, shardingItemParameters, description);
     }
