@@ -1,0 +1,20 @@
+regCenter:
+  serverList: 10.15.1.84:2181
+  namespace: elastic-job-lite-springboot
+
+spring:
+  datasource:
+    url: jdbc:mysql://10.15.1.84:3306/elastic-job?useUnicode=true&characterEncoding=utf-8&verifyServerCertificate=false&useSSL=false&requireSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: joyu123
+    tomcat:
+      max-wait: 10000
+      min-idle: 0
+      initial-size: 25
+      validation-query: SELECT 1
+      test-on-borrow: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 18800
+      remove-abandoned: true
+      remove-abandoned-timeout: 180
