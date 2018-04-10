@@ -23,23 +23,33 @@ public abstract class AbstractDataflowJobConfig
     @Resource
     protected JobEventConfiguration jobEventConfiguration;
 
-    protected LiteJobConfiguration getLiteJobConfiguration(final Class<? extends DataflowJob> jobClass, final String cron, final int shardingTotalCount, final String shardingItemParameters) {
+    protected LiteJobConfiguration getLiteJobConfiguration(final Class<? extends DataflowJob> jobClass,
+                                                           final String cron,
+                                                           final int shardingTotalCount,
+                                                           final String shardingItemParameters,
+                                                           final String description) {
         return LiteJobConfiguration.newBuilder(new DataflowJobConfiguration(JobCoreConfiguration.newBuilder(
-                jobClass.getName(), cron, shardingTotalCount).shardingItemParameters(shardingItemParameters).build(), jobClass.getCanonicalName(), true)).overwrite(true).build();
+                jobClass.getName(), cron, shardingTotalCount).shardingItemParameters(shardingItemParameters).description(description).build(),
+                jobClass.getCanonicalName(), true)).overwrite(true).build();
     }
 
     public JobScheduler builderJobScheduler(final DataflowJob dataflowJob,
                                             final String cron,
                                             final int shardingTotalCount,
-                                            final String shardingItemParameters)
+                                            final String shardingItemParameters,
+                                            final String description)
     {
         return new SpringJobScheduler(dataflowJob,
                 regCenter,
-                getLiteJobConfiguration(dataflowJob.getClass(), cron, shardingTotalCount, shardingItemParameters),
+                getLiteJobConfiguration(dataflowJob.getClass(), cron, shardingTotalCount, shardingItemParameters, description),
                 jobEventConfiguration);
     }
 
     public abstract DataflowJob dataflowJob();
 
-    public abstract JobScheduler dataflowJobScheduler(final DataflowJob dataflowJob, final String cron, final int shardingTotalCount, final String shardingItemParameters);
+    public abstract JobScheduler dataflowJobScheduler(final DataflowJob dataflowJob,
+                                                      final String cron,
+                                                      final int shardingTotalCount,
+                                                      final String shardingItemParameters,
+                                                      final String description);
 }

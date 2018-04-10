@@ -37,8 +37,9 @@ public class SimpleJobConfig extends AbstractSimpleJobConfig
     public JobScheduler simpleJobScheduler(final SimpleJob simpleJob,
                                            @Value("${simpleJob.cron}") final String cron,
                                            @Value("${simpleJob.shardingTotalCount}") final int shardingTotalCount,
-                                           @Value("${simpleJob.shardingItemParameters}") final String shardingItemParameters)
+                                           @Value("${simpleJob.shardingItemParameters}") final String shardingItemParameters,
+                                           @Value("${simpleJob.description}") final String description)
     {
-        return builderJobScheduler(simpleJob, cron, shardingTotalCount, shardingItemParameters);
+        return builderJobScheduler(simpleJob, cron, shardingTotalCount, shardingItemParameters, description);
     }
 }
